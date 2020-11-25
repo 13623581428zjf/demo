@@ -1,11 +1,11 @@
 <template>
 	<div>
 		<!--logo-->
-		<a href="lianxi.vue">点我跳练习</a> 
 		<div class="banner">
+			<router-link to='/lianxi'>点我</router-link>
 			<!--俩点-->
 			<div class="diner">
-				<a href="/" class="clod1"></a>
+				<a class="clod1"></a>
 				<a href="/" class="clod2"></a>
 			</div>
 		</div>
