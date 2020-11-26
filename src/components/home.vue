@@ -2,7 +2,6 @@
 	<div>
 		<!--logo-->
 		<div class="banner">
-			<router-link to='/lianxi'>点我</router-link>
 			<!--俩点-->
 			<div class="diner">
 				<a class="clod1"></a>
@@ -12,7 +11,7 @@
 		<!--2020年热门网页游戏>>>-->
 		<div class="banner-box">
 			<div class="jy-box-tit-1">
-				<span class="jy-tit-fs">3333333</span>
+				<router-link to='/lianxi' class="jy-tit-fs" style='text-decoration: none;'>点我</router-link>
 			</div>
 		</div>
 		<!--人气-->
