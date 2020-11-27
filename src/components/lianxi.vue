@@ -25,8 +25,12 @@
 		<!--计算属性-->
 		<!--computed-->
 		<p>{{name}}</p>
-        <p>计算后反转字符串{{reserveName}}</p>
-        <!--computed中setter-->
+		<p>计算后反转字符串{{reserveName}}</p>
+		<!--computed中setter-->
+		<!--get用来获取，set用来设置   num = 10-->
+		<p>{{num}}</p>
+		<p>{{num1}}</p>
+		<button @click="changeNum1">点我修改num1</button>
 	</div>
 </template>
 <script>
@@ -58,8 +62,9 @@
 						key: 'three'
 					}
 				],
-				name:'张景峰',
-				url:'11岁了'
+				name: '张景峰',
+				url: '11岁了',
+				num: 10
 			}
 		},
 		methods: {
@@ -68,17 +73,30 @@
 
 				)
 				console.log('触发input')
+			},
+			changeNum1: function() {
+				this.num1 = 11;
 			}
 		},
 		//计算属性
 		//计算属性的getter
 		//this指向vm实列
-		computed:{
-			reserveName:function(){
-				return this.name.split('').reverse().join('') 
+		//计算属性get用来获取，set用来设置  num=10
+		computed: {
+			reserveName: function() {
+				return this.name.split('').reverse().join('')
 			},
 			//setter
-			
+			 num1:{
+                    get:function(){//必须有返回值，用来获取属性，称为get函数
+                        return this.num-1;
+                    },
+                    set:function(val){
+                    	console.log(val)
+                        console.log('修改num1的值');
+                        this.num = 11;
+                    }
+                }
 		}
 	}
 </script>
