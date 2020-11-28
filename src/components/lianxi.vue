@@ -31,6 +31,25 @@
 		<p>{{num}}</p>
 		<p>{{num1}}</p>
 		<button @click="changeNum1">点我修改num1</button>
+		<p>{{prise}}</p>
+		<!--watch监听-->
+		<p>
+			千米：<input type="text" v-model="kilomenters" /> 千米：
+			<input type="text" v-model="meters" /> 米:
+		</p>
+		<!--动态样式-->
+		<!--<div class="stat" v-bind:class="{'stat':isA,'text':hasErr}">
+
+		</div>-->
+		<div class="stat" v-bind:class="{'stat':isA,'text':hasErr}">
+		</div>
+		<div v-bind:class="classobj">
+		</div>
+		<!--style-->
+		<div v-bind:style="{color:activeColor,fontSize:fontSize + 'px'}">
+			我是动态
+			style
+		</div>
 	</div>
 </template>
 <script>
@@ -64,7 +83,19 @@
 				],
 				name: '张景峰',
 				url: '11岁了',
-				num: 10
+				num: 10,
+				cents: 100,
+				kilomenters: 0,
+				meters: 0,
+				isA: true,
+				hasErr: true,
+				classObj: true,
+				classobj: {
+					acts: true,
+					tere: false
+				},
+				activeColor:'green',
+				fontSize:40
 			}
 		},
 		methods: {
@@ -87,17 +118,57 @@
 				return this.name.split('').reverse().join('')
 			},
 			//setter
-			 num1:{
-                    get:function(){//必须有返回值，用来获取属性，称为get函数
-                        return this.num-1;
-                    },
-                    set:function(val){
-                    	console.log(val)
-                        console.log('修改num1的值');
-                        this.num = 11;
-                    }
-                }
+			num1: {
+				get: function() { //必须有返回值，用来获取属性，称为get函数
+					return this.num - 1;
+				},
+				set: function(val) {
+					console.log(val)
+					console.log('修改num1的值');
+					this.num = 11;
+				}
+			},
+			prise: {
+				get: function() {
+					return(this.cents / 100).toFixed(2)
+				}
+			}
+		},
+		watch: {
+			kilomenters: function(val) {
+				console.log(val)
+				this.kilomenters = val;
+				this.meters = this.kilomenters * 1000
+			},
+			meters: function(val) {
+				this.kilomenters = val / 1000;
+				this.meters = val;
+			}
 		}
 	}
 </script>
-<style scoped></style>
+<style scoped>
+	.stat {
+		width: 100px;
+		height: 100px;
+		background: green;
+	}
+	
+	.text {
+		width: 200px;
+		height: 200px;
+		background: red;
+	}
+	
+	.acts {
+		width: 100px;
+		height: 10px;
+		background: teal;
+	}
+	
+	.tere {
+		width: 100px;
+		height: 10px;
+		background: blue;
+	}
+</style>
