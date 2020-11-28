@@ -47,9 +47,18 @@
 		</div>
 		<!--style-->
 		<div v-bind:style="{color:activeColor,fontSize:fontSize + 'px'}">
-			我是动态
-			style
+			我是动态 style
 		</div>
+		<!--点击事件  让ent加1-->
+		<button v-on:click="ent+=1">这个按钮被点了{{ent}}次</button>
+        <button v-on:click="say('hi')">点我说hi</button>
+        <button v-on:click="say('hello')">点我说hello</button>
+        <!--允许点击一次-->
+        <button v-on:click.once='doThis'>只点击一次</button>
+        <!--阻止冒泡    同事件处理器-->
+        <button v-on:click.stop="doThis">阻止冒泡</button>
+         <!--input-->
+         
 	</div>
 </template>
 <script>
@@ -94,8 +103,9 @@
 					acts: true,
 					tere: false
 				},
-				activeColor:'green',
-				fontSize:40
+				activeColor: 'green',
+				fontSize: 40,
+				ent: 0
 			}
 		},
 		methods: {
@@ -107,9 +117,14 @@
 			},
 			changeNum1: function() {
 				this.num1 = 11;
+			},
+			say:function(massage){
+				alert(massage)
+			},
+			doThis:function(){
+				console.log('点击了一次')
 			}
-		},
-		//计算属性
+		},//计算属性
 		//计算属性的getter
 		//this指向vm实列
 		//计算属性get用来获取，set用来设置  num=10
